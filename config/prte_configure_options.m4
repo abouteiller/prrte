@@ -408,19 +408,19 @@ PRTE_ZLIB_CONFIG
 dnl Check for FT
 AC_MSG_CHECKING([if want fault tolerance support])
 AC_ARG_ENABLE([prte-ft],
-    [AC_HELP_STRING([--enable-prte-ft],
-        [ENable PRRTE fault tolerance support (default: disabled)])])
-if test "$enable_prte_ft" = "yes"; then
-    AC_MSG_RESULT([yes])
-    prte_enable_ft=1
-    PRTE_SUMMARY_ADD([[Options]],[[Fault tolerance]], [prte_ft], [yes])
-else
+    [AC_HELP_STRING([--disable-prte-ft],
+        [Disable PRRTE fault tolerance support (default: enabled)])])
+if test "$enable_prte_ft" = "no"; then
     AC_MSG_RESULT([no])
     prte_enable_ft=0
     PRTE_SUMMARY_ADD([[Options]],[[Fault tolerance]], [prte_ft], [no])
+else
+    AC_MSG_RESULT([yes])
+    prte_enable_ft=1
+    PRTE_SUMMARY_ADD([[Options]],[[Fault tolerance]], [prte_ft], [yes])
 fi
 AC_DEFINE_UNQUOTED([PRTE_ENABLE_FT], [$prte_enable_ft],
-                   [Enable PRRTE fault tolerance support (default: disabled)])
+                   [Disable PRRTE fault tolerance support (default: enabled)])
 
 
 ])dnl
